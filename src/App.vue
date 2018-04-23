@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="sideNav">
+    <v-navigation-drawer fixed v-model="sideNav" app>
       <v-list>
         <v-list-tile v-for="item in menuItems" :key="item.title" router :to="item.link">
           <v-list-tile-action>
@@ -13,7 +13,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar fixed dark class="primary">
+    <v-toolbar fixed dark class="primary" app>
       <v-toolbar-title>
         <router-link to="/" tag="span" style="cursor: pointer">Stoaty</router-link>
       </v-toolbar-title>
@@ -26,15 +26,17 @@
       </v-toolbar-items>
     </v-toolbar>
 
-    <main>
-      <router-view></router-view>
-    </main>
+    <v-content>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
+    </v-content>
   </v-app>
 </template>
 
 <script>
   export default {
-    data () {
+    data() {
       return {
         sideNav: false,
         menuItems: [
